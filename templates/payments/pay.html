@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block specific-css %}
+<style type="text/css">
+body { margin-top:20px; }
+
+/* CSS for Credit Card Payment form */
+.credit-card-box .panel-title {
+    display: inline;
+    font-weight: bold;
+}
+.credit-card-box .form-control.error {
+    border-color: red;
+    outline: 0;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(255,0,0,0.6);
+}
+.credit-card-box label.error {
+  font-weight: bold;
+  color: red;
+  padding: 2px 8px;
+  margin-top: 2px;
+}
+.credit-card-box .payment-errors {
+  font-weight: bold;
+  color: red;
+  padding: 2px 8px;
+  margin-top: 2px;
+}
+.credit-card-box label {
+    display: block;
+}
+/* The old "center div vertically" hack */
+.credit-card-box .display-table {
+    display: table;
+}
+.credit-card-box .display-tr {
+    display: table-row;
+}
+.credit-card-box .display-td {
+    display: table-cell;
+    vertical-align: middle;
+    width: 50%;
+}
+/* Just looks nicer */
+.credit-card-box .panel-heading img {
+    min-width: 180px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Start contact  -->
+<section id="mu-contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mu-contact-area">
+                    <!-- start title -->
+                    <div class="mu-title">
+                        <h2>Formulario de pagos SPO</h2>
+                        <p>Lorem imp</p>
+                    </div>
+                    <!-- end title -->
+                    {# {% include 'messages.html' %} #}
+                    <!-- start contact content -->
+                    <div class="mu-contact-content">
+                        <form id="form-aspirante" action="" method="post">
+                            {% csrf_token %}
+                            {% bootstrap_form_errors form %}
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div class="mu-contact-left">
+                                        {% bootstrap_field form.owner_first_name %}
+                                        {% bootstrap_field form.owner_last_name %}
+                                        {% bootstrap_field form.email %}
+                                        {% bootstrap_field form.country %}
+                                        {% bootstrap_field form.state %}
+                                        {% bootstrap_field form.city %}
+                                        {% bootstrap_field form.address %}
+                                            
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <strong>Detalle de pagos</strong>
+                                        </div>
+                                        
+                                        <div class="panel-body row">
+                                            <h4 class="col-lg-12">
+                                                Metodos de pago disponibles
+                                                <!--<hr>-->
+                                            </h4>
+                                            <div class="col-lg-12">
+                                                <img class="img-responsive" src="http://i76.imgup.net/accepted_c22e0.png">
+                                            </div>
+                                            
+                                            <h4 class="col-lg-12">
+                                                Datos de la tarjeta
+                                            </h4>
+                                            {% bootstrap_field form.card_number form_group_class='form-group col-lg-9' %}
+                                            {% bootstrap_field form.card_cvv form_group_class='form-group col-lg-3' %}
+                                            {% bootstrap_field form.card_month form_group_class='form-group col-lg-6' %}
+                                            {% bootstrap_field form.card_year form_group_class='form-group col-lg-6' %}
+                                                
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center g-recaptcha" data-sitekey="{{ GOOGLE_RECAPTCHA_SITE_KEY}}"></div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg" title="Inscribirse">
+                            <!--<i class="fa fa-save"></i>-->
+                                Realizar pago
+                            </button>
+                        </form>
+                        <!--<form id="form-aspirante" action="" method="post">-->
+                        <!--    {#{% csrf_token %}#}-->
+                        <!--    {#{% bootstrap_form forrms %}#}-->
+                        <!--  <button type="submit" class="btn btn-primary btn-lg" title="Inscribirse">-->
+                              <!--<i class="fa fa-save"></i>-->
+                        <!--    Realizar Inscripcion-->
+                        <!--  </button>-->
+                        <!--</form>-->
+                    </div>
+                    <!-- end contact content -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+ <!-- End contact  -->
+{% endblock %}
